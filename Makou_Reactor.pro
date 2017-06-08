@@ -303,18 +303,7 @@ macx {
 }
 
 # include zlib
-!win32 {
-    LIBS += -lz
-} else {
-    exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
-        INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
-    } else {
-        INCLUDEPATH += zlib-1.2.7
-        greaterThan(QT_MAJOR_VERSION, 4) {
-            LIBS += -lz
-        }
-    }
-}
+LIBS += -lz
 
 win32 {
     RC_FILE = Makou_Reactor.rc
@@ -322,7 +311,7 @@ win32 {
     # Regedit features
     LIBS += -ladvapi32 -lshell32
     # OpenGL features
-    LIBS += -lopengl32 -lGlU32
+    LIBS += -lopengl32 -lglu32
     # QTaskbarButton
     greaterThan(QT_MAJOR_VERSION, 4):qtHaveModule(winextras) {
         QT += winextras
